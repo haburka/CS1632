@@ -4,6 +4,27 @@ import java.util.Vector;
 public class FunCity {
 	
 	private Vector<Driver> drivers;
+	public String run(String[] args) throws NumberFormatException, Exception{
+		if(args.length == 1){
+			try{
+				Integer.parseInt(args[0]);
+			}catch (NumberFormatException e){
+				return("Not an int");
+			}
+		}else{
+			return("Wrong number of args.");
+		}
+		Driver driver1 = new Driver();
+		Driver driver2 = new Driver();
+		Driver driver3 = new Driver();
+		Driver driver4 = new Driver();
+		FunCity test = new FunCity();
+		test.addDriver(driver1);
+		test.addDriver(driver2);
+		test.addDriver(driver3);
+		test.addDriver(driver4);
+		return(test.iterate(Integer.parseInt(args[0])));
+	}
 	public FunCity(){
 		this.drivers = new Vector<Driver>();
 	}
@@ -16,7 +37,7 @@ public class FunCity {
 			return false;
 		}
 	}
-	public String iterate(int seed){
+	public String iterate(int seed) throws Exception{
 		int activeDrivers = 0;
 		if(drivers.size() != 4){
 			return "need more drivers.";
@@ -29,7 +50,7 @@ public class FunCity {
 			do{//every program needs a do while loop ^_^
 				answer += "Step "+i+":\n";
 				for(int j = 0; j < activeDrivers; ++j){
-					drivers.get(j).chooseNext(gen.nextInt(4),locales);
+					drivers.get(j).chooseNext(gen.nextInt(2),locales);
 					answer += "Driver "+j+" goes to the "+drivers.get(j).getLocation()+".\n";
 					if(drivers.get(j).getLocation().equals("Outside City")){
 						over = true;

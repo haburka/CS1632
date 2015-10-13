@@ -20,7 +20,7 @@ public class Driver implements Cloneable{
 	public void chooseFirst(int i,String[] locales){
 		this.location = locales[i];
 	}
-	public void chooseNext(int i, String[] locales) {
+	public void chooseNext(int i, String[] locales) throws Exception {
 		String originalLoc = this.location;
 		if(!this.isDone()){
 			switch (this.location) {
@@ -49,6 +49,7 @@ public class Driver implements Cloneable{
 				} else if (i == 0) {
 					this.setLocation(locales[4]);
 				}
+				break;
 			case "University":
 				if (i == 1) {
 					this.setLocation(locales[3]);
@@ -69,7 +70,7 @@ public class Driver implements Cloneable{
 			}
 			this.first = true;
 		}else if(!(i == 0 || i == 1)){
-			this.setLocation(originalLoc);
+			throw new Exception();
 		}
 	}
 	public void setDone(boolean done) {

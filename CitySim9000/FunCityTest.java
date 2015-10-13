@@ -9,6 +9,18 @@ import org.junit.Test;
 
 public class FunCityTest {
 	/*
+	 * Tests the main Method - makes sure that it handles bad cases as outline in fun args
+	 * If these don't work then it means the requirement isn't met.
+	 */
+	@Test
+	public void testMain() throws NumberFormatException, Exception{
+		FunCity test = new FunCity();
+		String[] args = {"bad string"};
+		assertEquals("Not an int",test.run(args));
+		String[] args2 = {"1","0"};
+		assertEquals("Wrong number of args.",test.run(args2));
+	}
+	/*
 	 * Test the add driver method - it needs to return true and this shouldn't be changed
 	 */
 	@Test
@@ -23,7 +35,7 @@ public class FunCityTest {
 	 * 2 asserts here because it tests if it's 4 and not 4.
 	 */
 	@Test
-	public void testIterateSize(){
+	public void testIterateSize() throws Exception{
 		FunCity test = new FunCity();
 		Driver driver = mock(Driver.class);
 		assertEquals("need more drivers.",test.iterate(1));
@@ -40,7 +52,7 @@ public class FunCityTest {
 	 * If for example, that they leave early or that the simulation doesn't end, then it will fail.
 	 */
 	@Test
-	public void testFunIterateLastDriver(){
+	public void testFunIterateLastDriver() throws Exception{
 		FunCity test = new FunCity();
 		String resultString = new String("Step 0:\n"
 				+ "Driver 0 starts in the Mall.\n"
@@ -83,7 +95,7 @@ public class FunCityTest {
 	 * Potentially this catches the case where it keeps going based off of the drivers.
 	 */
 	@Test
-	public void testFunEnd(){
+	public void testFunEnd() throws Exception{
 		FunCity test = new FunCity();
 		String resultString = new String("Step 0:\n"
 				+ "Driver 0 starts in the Mall.\n"

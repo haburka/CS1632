@@ -12,12 +12,21 @@ import org.mockito.Mockito.*;
 
 public class DriverTest {
 	/*
+	 * This tests that it fails if you use a bad random for i.
+	 */
+	@Test(expected=Exception.class)
+	public void badRandomGetNextTest() throws Exception{
+		Driver test = new Driver();
+		String locales[] = test.getLocales();
+		test.chooseNext(2,locales);
+	}
+	/*
 	 * This chooese a bad value
 	 * What if someone passes in a bad int?
 	 * It needs to not do something unexpected
 	 */
 	@Test
-	public void badValueGetNextTest(){
+	public void badValueGetNextTest() throws Exception{
 		Driver test = new Driver();
 		String locales[] = test.getLocales();
 		test.chooseFirst(0, locales);
@@ -45,7 +54,7 @@ public class DriverTest {
 	 * A good location showing up from a bad value would mean the programming wasn't working
 	 */
 	@Test
-	public void testDefault(){
+	public void testDefault() throws Exception{
 		Driver test = new Driver();
 		String locales[] = test.getLocales();
 		test.chooseFirst(0, locales);
@@ -62,7 +71,7 @@ public class DriverTest {
 	 * which is part of the reason why this test is so long.
 	 */
 	@Test
-	public void testFunFirstLoc(){
+	public void testFunFirstLoc() throws Exception{
 		Driver test = new Driver();
 		String locales[] = test.getLocales();
 		test.chooseFirst(0, locales);
@@ -84,7 +93,7 @@ public class DriverTest {
 	 * Since it's a requirement, it needs to be tested.
 	 */
 	@Test
-	public void testChooseNextOutsideToInside(){
+	public void testChooseNextOutsideToInside() throws Exception{
 		Driver test = new Driver();
 		String locales[] = test.getLocales();
 		test.chooseFirst(0, locales);
@@ -99,7 +108,7 @@ public class DriverTest {
 	 * an assert for each case, isnteading just testing with 0.
 	 */
 	@Test
-	public void testChooseNextInsideToInside(){
+	public void testChooseNextInsideToInside() throws Exception{
 		Driver test = new Driver();
 		String locales[] = test.getLocales();
 		test.chooseFirst(0, locales);
