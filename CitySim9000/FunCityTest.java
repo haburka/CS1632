@@ -8,14 +8,20 @@ import org.junit.Test;
 
 
 public class FunCityTest {
-
+	/*
+	 * Test the add driver method - it needs to return true and this shouldn't be changed
+	 */
 	@Test
 	public void testAddDriver() {
 		FunCity test = new FunCity();
 		Driver driver = mock(Driver.class);
 		assertTrue(test.addDriver(driver));
 	}
-	
+	/*
+	 * Make sure that there are exactly 4 drivers in the city
+	 * A lot of code is based off that assumption and it's not changeable
+	 * 2 asserts here because it tests if it's 4 and not 4.
+	 */
 	@Test
 	public void testIterateSize(){
 		FunCity test = new FunCity();
@@ -28,6 +34,11 @@ public class FunCityTest {
 		when(driver.getLocation()).thenReturn("Outside City");
 		assertNotEquals("need more drivers.",test.iterate(1));
 	}
+	/*
+	 * This tests what happens if you put in 4 drivers and then the last one goes to the city the second time.
+	 * This is an important edge case. If anything else happens, this test will fail.
+	 * If for example, that they leave early or that the simulation doesn't end, then it will fail.
+	 */
 	@Test
 	public void testFunIterateLastDriver(){
 		FunCity test = new FunCity();
@@ -66,6 +77,11 @@ public class FunCityTest {
 		test.addDriver(driver4);
 		assertEquals(resultString, test.iterate(1));
 	}
+	/*
+	 * This tests an early ending. 
+	 * This is important so that it ends early instead of going on.
+	 * Potentially this catches the case where it keeps going based off of the drivers.
+	 */
 	@Test
 	public void testFunEnd(){
 		FunCity test = new FunCity();
